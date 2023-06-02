@@ -24,9 +24,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest app_test.py
+        run: coverage run -m pytest app_test.py
 
-      - name: Show coverage
+      - name: Show coverage report
         run: coverage report -m
 
       - name: Configure AWS credentials
