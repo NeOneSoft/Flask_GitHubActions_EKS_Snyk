@@ -65,4 +65,4 @@ if __name__ == "__main__":
     conn.close()
 
     # Ejecutar la aplicación Flask
-    app.run(debug=True)
+    app.run()
