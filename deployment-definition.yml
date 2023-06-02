@@ -17,3 +17,5 @@ spec:
           image: 827274518702.dkr.ecr.us-west-2.amazonaws.com/flask-api-ecr:latest
           ports:
             - containerPort: 80
+              protocol: TCP
+          imagePullPolicy: Always
