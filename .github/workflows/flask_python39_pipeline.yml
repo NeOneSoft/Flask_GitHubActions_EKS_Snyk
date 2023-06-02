@@ -26,6 +26,9 @@ jobs:
       - name: Run tests
         run: pytest app_test.py
 
+      - name: Show coverage
+        run: coverage report -m
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
