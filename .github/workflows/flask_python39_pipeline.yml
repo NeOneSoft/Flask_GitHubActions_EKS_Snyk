@@ -70,3 +70,5 @@ jobs:
       - name: Deploy to EKS
         run: |
           kubectl apply -f deployment-definition.yml
+          kubectl port-forward deployment/api-deployment 5000:5000
+          curl -X GET http://localhost:5000/users/1
