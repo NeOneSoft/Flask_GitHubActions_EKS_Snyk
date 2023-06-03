@@ -70,7 +70,8 @@ jobs:
       - name: Deploy to EKS
         run: |
           kubectl apply -f deployment-definition.yml
-          kubectl port-forward deployment/api-deployment 5000:5000
+          kubectl port-forward deployment/api-deployment 5000:5000 > /dev/null 2>&1 &  # Run in the background
+          sleep 5  # Wait for a few seconds for port forwarding to establish
 
       - name: Execute basic http request
         run: |
