@@ -76,7 +76,6 @@ jobs:
         run: |
           mkdir -p ~/.kube
           echo ${{ secrets.KUBECONFIG }} | base64 --decode > ~/.kube/config
-          kubectl config use-context neo-one-cluster-cluster
 
       - name: Deploy to EKS
         run: |
