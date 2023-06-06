@@ -76,3 +76,9 @@ jobs:
       - name: Execute basic http request
         run: |
           curl -X GET http://localhost:5000/users/1
+
+      - name: Create NodePort service
+        run: |
+          kubectl expose deployment api-deployment --type=NodePort --port=5000 --target-port=5000 --name=api-service
+          NODE_PORT=$(kubectl get svc api-service -o jsonpath='{.spec.ports[0].nodePort}')
+          echo "::set-output name=node_port::$NODE_PORT"
