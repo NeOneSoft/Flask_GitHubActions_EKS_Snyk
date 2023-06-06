@@ -75,6 +75,7 @@ jobs:
 
       - name: Execute basic http request
         run: |
+          sleep 10  # Add a small delay to ensure port forwarding is fully established
           curl -X GET http://localhost:5000/users/1
 
       - name: Create NodePort service
