@@ -80,7 +80,7 @@ jobs:
 
       - name: Create NodePort service
         run: |
-          kubectl expose deployment api-deployment --type=NodePort --port=80 --target-port=5000 --name=api-service
+          kubectl expose deployment api-deployment --type=LoadBalancer --port=80 --target-port=5000 --name=api-service
           NODE_PORT=$(kubectl get svc api-service -o jsonpath='{.spec.ports[0].nodePort}')
           echo "::set-output name=node_port::$NODE_PORT"
           echo "::set-output name=service_url::http://$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}'):$NODE_PORT"
