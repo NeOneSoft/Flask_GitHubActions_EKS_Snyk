@@ -83,10 +83,4 @@ jobs:
           kubectl expose deployment api-deployment --type=NodePort --port=5000 --target-port=5000 --name=api-service
           NODE_PORT=$(kubectl get svc api-service -o jsonpath='{.spec.ports[0].nodePort}')
           echo "::set-output name=node_port::$NODE_PORT"
-
-      - name: Get Service URL
-        run: |
-          CLUSTER_IP=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}')
-          NODE_PORT=$(echo "${{ steps.create-service.outputs.node_port }}")
-          SERVICE_URL="http://${CLUSTER_IP}:${NODE_PORT}"
-          echo "::set-output name=service_url::$SERVICE_URL"
+          echo "::set-output name=service_url::http://$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}'):$NODE_PORT"
